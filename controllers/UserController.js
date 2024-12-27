@@ -10,16 +10,23 @@ import { generateToken } from "../services/GernateaTokens.js";
 import { SignupIntput, logininput } from "../zodSchema.js";
 
 export async function siginUserController(req, res) {
-  const result = SignupIntput.safeParse(req.body);
+  const result = await SignupIntput.safeParse(req.body);
   if (!result.success) {
     res.status(400).json({
       msg: "the user input is incorrect",
     });
   }
   const { FirstName, LastName, Email, Password } = result.data;
+  const ifuserexist = await User.findOne({ Email });
+  if (ifuserexist) {
+    return res.status(200).json({
+      msg: "The user alrady exists",
+    });
+  }
   try {
     const user = { FirstName, LastName, Email, Password };
-    const madeUser = User.create(user);
+    const madeUser = await User.create(user);
+    console.log(madeUser);
     if (!madeUser) {
       return res.status(500).json({
         msg: "The user could not be created",
@@ -53,7 +60,7 @@ export async function loginUserController(req, res) {
         msg: "User does not exist",
       });
     }
-    const result = await verifyPassword(Password, ActiveUser.Password);
+    const isPasswordValid = await verifyPassword(Password, ActiveUser.Password);
     if (!isPasswordValid) {
       return res.status(401).json({
         msg: "The password is incorrect",

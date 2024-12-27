@@ -14,9 +14,9 @@ import {
 User_Routes.post("/signup", siginUserController);
 
 // login the user
-User_Routes.post("/login", verifieToken, loginUserController);
+User_Routes.post("/login", loginUserController);
 
 // get the courses you have purchaed
-User_Routes.get("/purchases", getPurchasedCoursesController);
+User_Routes.get("/purchases", verifieToken, getPurchasedCoursesController);
 
 export default User_Routes;

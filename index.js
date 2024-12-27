@@ -22,7 +22,6 @@ app.use("/user", User_Routes);
 app.use("/admin", Admin_Routes);
 app.use("/courses", Courses_Routes);
 
-
 async function start() {
   //connect the database;
   await connect(process.env.DB_URL);

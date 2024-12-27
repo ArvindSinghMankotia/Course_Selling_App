@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import bcryptjs from "bcryptjs";
 
 const UserSchema = new Schema(
   {
@@ -23,7 +24,7 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-UserSchema.pre("save", async (next) => {
+UserSchema.pre("save", async function hashpass(next) {
   if (!this.isModified("Password")) return next();
   try {
     const salt = await bcryptjs.genSalt(10);
