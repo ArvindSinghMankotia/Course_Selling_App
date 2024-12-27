@@ -1,5 +1,6 @@
 import { Router } from "express";
 const Admin_Routes = Router();
+import { Admin } from "../models/Admin.Model.js";
 
 // signin the user 
 Admin_Routes.post("/signup",(req,res)=>{
