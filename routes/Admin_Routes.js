@@ -31,6 +31,7 @@ Admin_Routes.patch("/updateacourse",(req,res)=>{
 // get all the courses which he has created;
 Admin_Routes.get("/courses",(req,res)=>{
 
+ //
 })
 
 export default Admin_Routes ;

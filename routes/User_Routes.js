@@ -1,17 +1,22 @@
 import { Router } from "express";
 const User_Routes = Router();
-import  {User}  from "../models/User_Model.js";
+
+//import middleware
+import { verifieToken } from "../middlewares/verifieToken_middleware.js";
+//import controllers
+import {
+  siginUserController,
+  loginUserController,
+  getPurchasedCoursesController,
+} from "../controllers/UserController.js";
 
 // signin the user
-User_Routes.post("/signup", (req, res) => {
-  res.send("the user sigin route");
-});
+User_Routes.post("/signup", siginUserController);
 
 // login the user
-User_Routes.post("/login", (req, res) => {});
+User_Routes.post("/login", verifieToken, loginUserController);
 
 // get the courses you have purchaed
-User_Routes.get("/purchases", (req, res) => {});
+User_Routes.get("/purchases", getPurchasedCoursesController);
 
 export default User_Routes;
-// module.exports = router;

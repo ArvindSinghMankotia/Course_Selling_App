@@ -10,7 +10,7 @@ const app = express();
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 
 // import routers
 import User_Routes from "./routes/User_Routes.js";
@@ -21,6 +21,7 @@ import Courses_Routes from "./routes/Courses_Routes.js";
 app.use("/user", User_Routes);
 app.use("/admin", Admin_Routes);
 app.use("/courses", Courses_Routes);
+
 
 async function start() {
   //connect the database;
