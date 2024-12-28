@@ -18,13 +18,13 @@ const AdminSchema = new Schema(
     },
     Password: {
       type: String,
-      required: true,
+      required: true, 
     },
   },
   { timestamps: true }
 );
 
-AdminSchema.pre("save", async (next) => {
+AdminSchema.pre("save", async function hashpass(next){
   if (!this.isModified("Password")) return next();
   try {
     const salt = await bcryptjs.genSalt(10);

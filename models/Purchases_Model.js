@@ -2,6 +2,12 @@ import mongoose, { model, Schema } from "mongoose";
 
 const purchasedCoursesSchema = new Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      unique: true,
+    },
     courseId: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -10,12 +16,6 @@ const purchasedCoursesSchema = new Schema(
         unique: true,
       },
     ],
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      unique: true,
-    },
   },
   { timestamps: true }
 );
