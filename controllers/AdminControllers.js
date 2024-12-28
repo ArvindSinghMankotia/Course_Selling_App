@@ -1,5 +1,6 @@
 //import models
-import { Admin,Course} from "../models/Admin.Model.js";
+import { Admin} from "../models/Admin.Model.js";
+import {Course} from "../models/Courses_Model.js"
 
 //import services
 import { verifyPassword } from "../services/verifiethePassword.js";
@@ -86,17 +87,22 @@ export async function loginAdminController(req,res){
 
 export async function addnewCourseController(req,res){
     const id = req.user.id;
+    console.log(`id ${id}`);
+    
     if (!id) {
         res.status(401).json({
           msg: "The id id not present",
         });
     }
+
     const newcourseDetails = {
         title : req.body.title,
         description :req.body.description,
         price : req.body.price,
         imageUrl : req.body.imageUrl,
     }
+    console.log(newcourseDetails);
+    
     const result = courseInput.safeParse(newcourseDetails);
     if(!result.success){
         res.status(400).json({
@@ -136,6 +142,8 @@ export async function deleteCourseController(req,res){
         });
     }
     const deleteacourseid = req.body.id;
+    console.log(deleteacourseid);
+    
     if(!deleteacourseid){
         res.status(401).json({
             msg: "The Course id is not present",

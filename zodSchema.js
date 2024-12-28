@@ -15,7 +15,6 @@ export const logininput = zod.object({
 export const courseInput = zod.object({
   title : zod.string().nonempty({message:"Title is required"}),
   description : zod.string().nonempty({message:"Description is required"}),
-  price : zod.number().nonempty({message :"The price is required"}),
-  imageUrl :zod.string(),
-  createrID :zod.string().nonempty({message:"The create id is required"})
+  price : zod.number().min(0,{message :"The price is required"}),
+  imageUrl :zod.string().optional()
 })

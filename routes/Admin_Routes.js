@@ -4,7 +4,7 @@ const Admin_Routes = Router();
 import {verifieToken} from "../middlewares/verifieToken_middleware.js"
 
 
-import {singnupAdminController,loginAdminController,addnewCourseController,deleteCourseController,updateCourseController,getAllCourseController} from "../controllers/AdminControllers.js";
+import {singnupAdminController,loginAdminController,addnewCourseController,deleteCourseController,getAllCourseController} from "../controllers/AdminControllers.js";
 // signin the user
 Admin_Routes.post("/signup",singnupAdminController);
 
